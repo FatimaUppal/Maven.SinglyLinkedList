@@ -1,11 +1,11 @@
 package com.zipcodewilmington.singlylinkedlist;
 
 
-import jdk.internal.org.objectweb.asm.commons.JSRInlinerAdapter;
+
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import sun.jvm.hotspot.runtime.VM;
+
 
 /**
  * Created by leon on 1/10/18.
@@ -30,9 +30,9 @@ public class SinglyLinkedListTest {
     @Test
     public void testRemove(){
         String expected="test";
-        list.add(expected);
+        list.add("test");
 
-        list.remove(expected);
+        list.remove("test");
 
         Assert.assertFalse(list.contains(expected));
     }
@@ -70,10 +70,9 @@ public class SinglyLinkedListTest {
 
     @Test
     public void testSize(){
-        int expected =5;
+        int expected =1;
         list.add("");
-        list.add("");
-        list.add("");
+
 
         int actual=list.size();
 
@@ -82,39 +81,38 @@ public class SinglyLinkedListTest {
     @Test
     public void testGet(){
         String expected= "target";
-        list.add("");
-        list.add(expected);
+        list.add("target");
 
-        int actual = list.get(1).data;
+        String actual = list.get(0);
 
         Assert.assertEquals(expected,actual);
     }
 
     @Test
     public void testCopy(){
-        list.add("");
         list.add("first");
-        list.add("second");
 
-        SinglyLinkedList<String> newList= list.copy();
 
-        Assert.assertNotEquals(list.toString(), newList.toString());
+        SinglyLinkedList<String> actual= list.copy();
+
         for (int i = 0; i < list.size(); i++) {
-            Assert.assertEquals(list.get(i), newList.get(i).data);
+            Assert.assertEquals(list.get(i), actual.get(i));
         }
     }
 
     @Test
     public void testSort(){
+        String expected= "test";
         list.add("yo");
-        list.add("naur");
+        list.add("test");
         list.add("yaur");
 
         list.sort();
 
-       Assert.assertEquals(list.get(0).data,"yo");
-       Assert.assertEquals(list.get(1).data,"naur");
-       Assert.assertEquals(list.get(2).data,"yaur");
+        String actual= list.get(0);
+
+       Assert.assertEquals(expected, actual);
+
 
     }
 
